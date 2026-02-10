@@ -124,6 +124,26 @@ app.get('/api/costs/history', (req, res) => {
   }
 });
 
+// GET /api/cron - returns list of configured cron jobs
+app.get('/api/cron', (req, res) => {
+  const { exec } = require('child_process');
+  
+  exec('openclaw cron list --json', (error, stdout, stderr) => {
+    if (error) {
+      console.error('Error calling cron tool:', error);
+      return res.status(500).json({ error: 'Failed to fetch cron jobs' });
+    }
+    
+    try {
+      const cronData = JSON.parse(stdout);
+      res.json({ ...cronData, timestamp: new Date().toISOString() });
+    } catch (parseError) {
+      console.error('Error parsing cron output:', parseError);
+      res.status(500).json({ error: 'Failed to parse cron data' });
+    }
+  });
+});
+
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));

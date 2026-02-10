@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import BacklogFeed from './components/BacklogFeed';
 import TodayCosts from './components/TodayCosts';
 import HistoricalCosts from './components/HistoricalCosts';
+import CronJobs from './components/CronJobs';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     { id: 'backlog', label: '📋 Backlog', component: BacklogFeed },
     { id: 'today', label: '💰 Today', component: TodayCosts },
     { id: 'history', label: '📊 History', component: HistoricalCosts },
+    { id: 'cron', label: '⏰ Cron Jobs', component: CronJobs },
   ];
 
   const ActiveComponent = tabs.find(t => t.id === activeTab)?.component;
