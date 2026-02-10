@@ -1,0 +1,27 @@
+{
+  "name": "kit-control-panel",
+  "version": "1.0.0",
+  "description": "Unified dashboard for OpenClaw backlog and cost tracking",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "nodemon server.js",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build && cd .. && cp -r client/dist dist",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "dashboard", "backlog", "cost-tracking"],
+  "author": "Forge",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
+  }
+}
