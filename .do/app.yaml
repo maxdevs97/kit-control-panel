@@ -1,0 +1,19 @@
+name: kit-control-panel
+region: nyc
+services:
+  - name: web
+    github:
+      repo: maxdevs97/kit-control-panel
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: npm run build
+    run_command: npm start
+    http_port: 3001
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    routes:
+      - path: /
+    envs:
+      - key: NODE_ENV
+        value: production
